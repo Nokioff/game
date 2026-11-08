@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d16">
+  <meta name="description" content="FixLab — браузерный симулятор мастерской по ремонту и продаже смартфонов.">
+  <title>FixLab — Симулятор мастерской</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="FixLab — главная">
+        <span class="brand-icon"><span></span><span></span><span></span></span>
+        <span class="brand-word">fix<span>lab</span><small>PHONE WORKSHOP SIM</small></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Основная навигация">
+        <a class="nav-link active" href="#workshop">Мастерская</a>
+        <a class="nav-link" href="#market">Скупка телефонов</a>
+        <a class="nav-link" href="#progress">Прогресс</a>
+      </nav>
+
+      <div class="topbar-right">
+        <div class="wallet-pill">
+          <span class="wallet-icon">₽</span>
+          <span><small>ТВОЙ БАЛАНС</small><strong id="balanceValue">20 000 ₽</strong></span>
+        </div>
+        <button class="icon-button reset-button" id="resetGame" type="button" title="Начать заново" aria-label="Начать игру заново">↻</button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="intro-row">
+        <div class="intro-copy">
+          <div class="eyebrow"><span class="live-dot"></span> СИМУЛЯТОР МАСТЕРСКОЙ <span class="eyebrow-divider"></span> СЕЗОН 01</div>
+          <h1>Скупай. <span>Чини.</span> Зарабатывай.</h1>
+          <p>Находи смартфоны с дефектами, подбирай запчасти и превращай неисправную технику в прибыль.</p>
+        </div>
+        <div class="intro-level" id="progress">
+          <div class="level-topline"><span>ТВОЙ УРОВЕНЬ</span><strong id="levelLabel">01 · Новичок</strong></div>
+          <div class="level-meter"><span id="xpFill"></span></div>
+          <div class="level-bottomline"><span id="xpValue">0 / 250 XP</span><span id="repairsValue">0 ремонтов</span></div>
+        </div>
+      </section>
+
+      <section class="game-grid">
+        <section class="panel workshop-panel" id="workshop" aria-labelledby="workshopTitle">
+          <div class="panel-heading">
+            <div>
+              <div class="section-kicker">01 / РАБОЧЕЕ МЕСТО</div>
+              <h2 id="workshopTitle">Твоя мастерская</h2>
+            </div>
+            <span class="status-chip"><span class="live-dot"></span> ОТКРЫТО</span>
+          </div>
+
+          <div class="bench-scene" id="benchScene">
+            <div class="scene-grid" aria-hidden="true"></div>
+            <div class="scene-label scene-label-left">FIXLAB / WORKBENCH</div>
+            <div class="scene-label scene-label-right">STATION 01</div>
+            <div class="bench-tools" aria-hidden="true">
+              <span class="tool tool-driver">⌁</span>
+              <span class="tool tool-tweezers">╱</span>
+              <span class="tool tool-suction">◉</span>
+            </div>
+            <div class="bench-mat">
+              <div class="mat-line mat-line-one"></div>
+              <div class="mat-line mat-line-two"></div>
+              <div class="phone-stage" id="phoneStage">
+                <div class="phone-empty" id="emptyPhoneState">
+                  <div class="empty-phone-icon"><span></span></div>
+                  <strong>Верстак свободен</strong>
+                  <p>Купи неисправный смартфон<br>в магазине справа и начни ремонт.</p>
+                  <a href="#market" class="text-link">Выбрать телефон <span>↗</span></a>
+                </div>
+                <div class="job-device hidden" id="jobDevice">
+                  <div class="job-device-glow"></div>
+                  <img id="jobPhoneImage" src="assets/phones/iphone-11.svg" alt="Телефон на ремонте">
+                  <div class="device-issue-tag" id="deviceIssueTag">Разбит экран</div>
+                </div>
+              </div>
+              <div class="mat-stamp">FL<span>·</span>01</div>
+            </div>
+            <div class="scene-footer"><span>ESD SAFE SURFACE</span><span>PRECISION TOOLS · 2026</span></div>
+          </div>
+
+          <div class="repair-console">
+            <div class="console-heading">
+              <div>
+                <span class="section-kicker">02 / ТЕКУЩАЯ ЗАДАЧА</span>
+                <h3 id="jobTitle">Ожидаем устройство</h3>
+              </div>
+              <span class="job-step" id="jobStep">НЕТ ЗАКАЗА</span>
+            </div>
+            <div id="jobContent" class="job-content">
+              <div class="job-empty-note">
+                <span class="note-icon">✳</span>
+                <span>Здесь появятся диагностика, выбор запчасти и этап продажи после покупки телефона.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel market-panel" id="market" aria-labelledby="marketTitle">
+          <div class="panel-heading market-heading">
+            <div>
+              <div class="section-kicker">03 / РЫНОК УСТРОЙСТВ</div>
+              <h2 id="marketTitle">Найди выгодный лот</h2>
+              <p class="panel-subtitle">Покупай дешевле рынка — зарабатывай на ремонте.</p>
+            </div>
+            <div class="market-count"><strong id="lotCount">08</strong><span>ЛОТОВ</span></div>
+          </div>
+
+          <div class="market-controls">
+            <label class="search-box">
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <input id="searchInput" type="search" placeholder="Модель или неисправность" autocomplete="off">
+              <kbd>/</kbd>
+            </label>
+            <button id="favoritesOnly" class="favorites-filter" type="button" aria-pressed="false"><span>♡</span> Избранное <b id="favoritesCount">0</b></button>
+          </div>
+
+          <div class="filter-row" id="brandFilters" role="group" aria-label="Фильтр по бренду">
+            <button class="filter-chip active" type="button" data-brand="all">Все модели</button>
+            <button class="filter-chip" type="button" data-brand="Apple">Apple</button>
+            <button class="filter-chip" type="button" data-brand="Samsung">Samsung</button>
+            <button class="filter-chip" type="button" data-brand="Xiaomi">Xiaomi</button>
+            <button class="filter-chip" type="button" data-brand="Google">Google</button>
+          </div>
+
+          <div class="catalog-grid" id="catalogGrid" aria-live="polite"></div>
+          <div class="market-footnote"><span class="footnote-dot"></span> Все устройства — игровые лоты. Цены и характеристики условные.</div>
+        </section>
+      </section>
+
+      <section class="bottom-stats" aria-label="Статистика мастерской">
+        <div class="bottom-stat">
+          <span class="bottom-stat-icon icon-blue">↗</span>
+          <span><small>ЗАРАБОТАНО</small><strong id="profitValue">0 ₽</strong></span>
+        </div>
+        <div class="bottom-stat">
+          <span class="bottom-stat-icon icon-green">✓</span>
+          <span><small>УСПЕШНЫХ РЕМОНТОВ</small><strong id="completedValue">0</strong></span>
+        </div>
+        <div class="bottom-stat">
+          <span class="bottom-stat-icon icon-violet">★</span>
+          <span><small>РЕПУТАЦИЯ</small><strong id="reputationValue">0 / 100</strong></span>
+        </div>
+        <div class="bottom-tip"><span>ПОДСКАЗКА</span><p id="tipText">Сначала проведи диагностику — она подскажет, какую деталь нужно заменить.</p></div>
+      </section>
+
+      <footer class="footer"><span>© 2026 FIXLAB SIMULATOR</span><span>СОЗДАНО ДЛЯ ТЕХ, КТО ЛЮБИТ ТЕХНИКУ <b>✳</b></span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="detail-modal">
+      <button class="modal-close" id="closeModal" type="button" aria-label="Закрыть окно">×</button>
+      <div class="modal-image-wrap"><img id="modalImage" src="" alt=""></div>
+      <div class="modal-copy">
+        <div class="section-kicker">ПОДРОБНОСТИ ЛОТА <span id="modalLotId">#FL-001</span></div>
+        <span class="condition-badge" id="modalCondition">Требует ремонта</span>
+        <h2 id="modalTitle">iPhone 11</h2>
+        <p id="modalIssue" class="modal-issue">Разбит экран</p>
+        <div class="modal-specs" id="modalSpecs"></div>
+        <div class="modal-economy">
+          <div><small>ПОКУПКА</small><strong id="modalBuyPrice">0 ₽</strong></div>
+          <div><small>ЗАПЧАСТЬ</small><strong id="modalPartCost">0 ₽</strong></div>
+          <div><small>ПЕРЕПРОДАЖА</small><strong id="modalResale">0 ₽</strong></div>
+          <div><small>НАГРАДА МАСТЕРУ</small><strong id="modalRepairReward">+0 ₽</strong></div>
+        </div>
+        <div class="modal-profit"><span>Чистая прибыль с учётом награды</span><strong id="modalProfit">+0 ₽</strong></div>
+        <button class="primary-button modal-buy" id="modalBuy" type="button">Купить телефон <span>→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

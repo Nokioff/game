@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="270" viewBox="0 0 360 270" fill="none">
+  <defs>
+    <linearGradient id="back" x1="66" y1="35" x2="189" y2="247" gradientUnits="userSpaceOnUse"><stop stop-color="#f7b58d"/><stop offset=".5" stop-color="#f28a68"/><stop offset="1" stop-color="#151f30"/></linearGradient>
+    <linearGradient id="frame" x1="190" y1="26" x2="314" y2="251" gradientUnits="userSpaceOnUse"><stop stop-color="#657b91"/><stop offset=".45" stop-color="#1b2737"/><stop offset="1" stop-color="#050a12"/></linearGradient>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff6b76"/><stop offset=".52" stop-color="#263d71"/><stop offset="1" stop-color="#101b35"/></linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff" stop-opacity=".23"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".08"/></linearGradient>
+    <filter id="shadow" x="35" y="8" width="300" height="260" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="8"/></filter>
+    <clipPath id="screenClip"><rect x="207" y="34" width="101" height="215" rx="17"/></clipPath>
+  </defs>
+  <ellipse cx="193" cy="244" rx="127" ry="15" fill="#000" opacity=".28" filter="url(#shadow)"/>
+  <g transform="rotate(-8 126 143)">
+    <rect x="70" y="28" width="118" height="220" rx="25" fill="#060b13" opacity=".48"/>
+    <rect x="73" y="25" width="112" height="218" rx="24" fill="url(#back)" stroke="#b6cadb" stroke-opacity=".35" stroke-width="1.5"/>
+    <rect x="78" y="30" width="102" height="208" rx="20" fill="url(#shine)"/>
+    
+          <rect x="84" y="51" width="55" height="68" rx="17" fill="#101a2b" opacity=".84"/>
+          <circle cx="101" cy="69" r="11" fill="#080d16" stroke="#8798ac" stroke-width="2"/><circle cx="101" cy="69" r="5" fill="#274e7d"/>
+          <circle cx="122" cy="92" r="11" fill="#080d16" stroke="#8798ac" stroke-width="2"/><circle cx="122" cy="92" r="5" fill="#274e7d"/>
+          <circle cx="122" cy="66" r="5" fill="#dce9ef" opacity=".8"/>
+        
+    <circle cx="161" cy="75" r="4" fill="#f1f4fa" opacity=".5"/>
+    <path d="M85 204 C113 183 150 185 176 161" stroke="#fff" stroke-opacity=".12" stroke-width="1.2"/>
+    <text x="129" y="220" text-anchor="middle" fill="#fff" fill-opacity=".35" font-family="Arial,sans-serif" font-size="7" letter-spacing="2">FIXLAB REFURB</text>
+  </g>
+  <g transform="rotate(5 258 137)">
+    <rect x="200" y="24" width="115" height="232" rx="25" fill="url(#frame)" stroke="#8094aa" stroke-opacity=".5" stroke-width="1.4"/>
+    <rect x="207" y="31" width="101" height="218" rx="18" fill="#050a13"/>
+    <g clip-path="url(#screenClip)">
+      <rect x="207" y="34" width="101" height="215" fill="url(#wall)"/>
+      <path d="M207 220 C220 169 254 143 300 96 C315 80 323 63 325 46 L325 246 L207 246Z" fill="#ff6b76" opacity=".83"/><path d="M207 160 C235 125 271 119 311 62 L324 91 C298 143 259 179 207 205Z" fill="#263d71" opacity=".56"/>
+      <path d="M207 34 H308 V249 H207Z" fill="url(#shine)"/>
+      <circle cx="287" cy="62" r="37" fill="#fff" opacity=".05"/>
+      
+      <g fill="none" stroke="#eaf6ff" stroke-width="1.5" opacity=".9" stroke-linecap="round">
+        <path d="M245 83 L261 105 L253 124 L272 143 L265 162 L286 186"/>
+        <path d="M261 105 L281 94 L292 77 M253 124 L232 133 L222 151 M272 143 L292 151 L302 169 M265 162 L247 178 L238 196"/>
+        <path d="M261 105 L250 91 L240 81 M286 186 L302 199 L306 214"/>
+        <path d="M253 124 L250 109 M272 143 L283 129 M247 178 L229 184"/>
+      </g>
+      <circle cx="261" cy="105" r="3" fill="#f4fbff" opacity=".9"/>
+    
+    </g>
+    <rect x="240" y="37" width="34" height="5" rx="3" fill="#050a13"/>
+    <circle cx="257" cy="242" r="2" fill="#c8d5e3" opacity=".55"/>
+    <path d="M202 70 V207" stroke="#e5f4ff" stroke-opacity=".18" stroke-width="1.5"/>
+  </g>
+</svg>
